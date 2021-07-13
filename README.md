@@ -1,8 +1,8 @@
 # E5-Rclone-Actions
 
-用Actions每天自动使用Rclone调用OneDrive使Office E5订阅保持活跃
+用Github Actions每天自动使用Rclone调用OneDrive，使Office E5订阅保持活跃。
 
-注：E5保活皆是玄学，能不能成功谁能知道呢？  
+注：E5保活皆是玄学，能不能成功谁能知道呢。
 
 # 使用方法
 
