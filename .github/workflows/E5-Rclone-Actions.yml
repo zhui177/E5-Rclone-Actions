@@ -18,14 +18,9 @@ jobs:
       - name: Rclone-Install
         run: curl https://rclone.org/install.sh | sudo bash
       - name: Rclone-Config
-        env:
-          RCLONE_CONFIG: ${{ secrets.RCLONE_CONFIG }}
         run: |
-          # 写配置文件
           mkdir -p ~/.config/rclone/
-          cat << EOF > ~/.config/rclone/rclone.conf
-          $RCLONE_CONFIG
-          EOF
+          unzip -P ${{ secrets.PASSWORD }} rclone.zip -d ~/.config/rclone/
       - name: Rclone-Run
         run: |
           # Rclone-Run
@@ -69,5 +64,15 @@ jobs:
           rclone mkdir e5:E5-Rclone-Actions-mkdir
           rclone rmdir e5:E5-Rclone-Actions-mkdir
           echo "创建、删除目录完毕"
+          
+      - name: Zip config #打包配置文件
+        run: zip -P ${{ secrets.PASSWORD }} rclone.zip -j ~/.config/rclone/rclone.conf
 
+      - name: Commit config #提交配置文件
+        run: |
+         git config --global user.email "2552724929@qq.com"
+         git config --global user.name "zhui177"
+         git add .
+         git commit -am "new rclone config"
+         git push
           
