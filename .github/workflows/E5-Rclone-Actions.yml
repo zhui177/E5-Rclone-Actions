@@ -33,7 +33,7 @@ jobs:
           for((i=1;i<=${random_time};i++));  
           do
           echo "倒计时 $[${random_time}-$i] 分钟"
-          sleep 1s
+          sleep 1m
           done
           }
 
@@ -44,23 +44,16 @@ jobs:
           sudo cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
           # 列出文件(此处不展示)
-          echo "列出文件配置文件"
-          ls -l ~/.config/rclone/rclone.conf
-          cat ~/.config/rclone/rclone.conf
           echo "列出文件(此处不展示)"
           rclone lsf e5: > "rclone lsf.log"
-          echo "finish lsf"
           rclone ls e5: > "rclone ls.log"
-          echo "finish ls"
 
           # 上传、删除文件
-          echo "start upload"
           dir=`date '+%Y/%m/%d'`
           time=`date '+%H-%M-%S'`
           mkdir -p E5-Rclone-Actions/$dir
           echo $time > E5-Rclone-Actions/$dir/$time.txt
           echo $time > E5-Rclone-Actions/$dir/$time.txt.2
-          echo "finish upload"
 
           rclone copy E5-Rclone-Actions e5:E5-Rclone-Actions
           echo "上传文件完毕"
