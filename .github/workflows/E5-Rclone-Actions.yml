@@ -45,7 +45,7 @@ jobs:
 
           # 列出文件(此处不展示)
           echo "列出文件配置文件"
-          ll ~/.config/rclone/rclone.conf
+          ls -l ~/.config/rclone/rclone.conf
           cat ~/.config/rclone/rclone.conf
           echo "列出文件(此处不展示)"
           rclone lsf e5: > "rclone lsf.log"
